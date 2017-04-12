@@ -5,13 +5,16 @@ LABEL \
     description="Image for tools used in RnaSeq"
 
 RUN apt-get update -y && apt-get install -y \
+    build-essential \
     bzip2 \
-    default-jdk
+    default-jdk \
     git \
     libnss-sss \
+    nodejs \
+    python-dev \
+    python-pip \
     unzip \
     wget
-
 
 ##############
 #HISAT2 2.0.5#
@@ -39,6 +42,13 @@ RUN mkdir /opt/sambamba/ \
 RUN mkdir /opt/picard/ \
     && wget https://github.com/broadinstitute/picard/releases/download/2.9.0/picard.jar \
     && mv picard.jar /opt/picard/
+
+######
+#Toil#
+######
+RUN pip install --upgrade pip \
+    && pip install toil[cwl] \
+    && sed -i 's/select\[type==X86_64 && mem/select[mem/' /usr/local/lib/python2.7/dist-packages/toil/batchSystems/lsf.py
 
 # Define a timezone so Java works properly
 RUN ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime \
