@@ -47,7 +47,7 @@ RUN mkdir /opt/picard/ \
 #Toil#
 ######
 RUN pip install --upgrade pip \
-    && pip install toil[cwl] \
+    && pip install toil[cwl]==3.6.0 \
     && sed -i 's/select\[type==X86_64 && mem/select[mem/' /usr/local/lib/python2.7/dist-packages/toil/batchSystems/lsf.py
 
 # Define a timezone so Java works properly
