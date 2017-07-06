@@ -13,9 +13,9 @@ RUN apt-get update -y && apt-get install -y \
     nodejs \
     python-dev \
     python-pip \
+    tzdata \
     unzip \
-    wget \
-    tzdata
+    wget
 
 ##############
 #HISAT2 2.0.5#
