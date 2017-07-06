@@ -14,7 +14,8 @@ RUN apt-get update -y && apt-get install -y \
     python-dev \
     python-pip \
     unzip \
-    wget
+    wget \
+    tzdata
 
 ##############
 #HISAT2 2.0.5#
