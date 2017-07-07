@@ -13,6 +13,7 @@ RUN apt-get update -y && apt-get install -y \
     nodejs \
     python-dev \
     python-pip \
+    tzdata \
     unzip \
     wget
 
@@ -42,6 +43,18 @@ RUN mkdir /opt/sambamba/ \
 RUN mkdir /opt/picard/ \
     && wget https://github.com/broadinstitute/picard/releases/download/2.9.0/picard.jar \
     && mv picard.jar /opt/picard/
+
+#################
+#StringTie 1.3.3#
+#################
+
+RUN mkdir /opt/stringtie/ \
+    && wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3.Linux_x86_64.tar.gz \
+    && cd /opt/stringtie \
+    && tar -xzvf /stringtie-1.3.3.Linux_x86_64.tar.gz \
+    && ln -s /opt/stringtie/stringtie-1.3.3.Linux_x86_64/stringtie /usr/bin/stringtie \
+    && cd / \
+    && rm stringtie-1.3.3.Linux_x86_64.tar.gz
 
 ######
 #Toil#
