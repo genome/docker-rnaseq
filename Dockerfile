@@ -7,15 +7,20 @@ LABEL \
 RUN apt-get update -y && apt-get install -y \
     build-essential \
     bzip2 \
+    cmake \
     default-jdk \
     git \
     libnss-sss \
+    libtbb2 \
+    libtbb-dev \
     nodejs \
     python-dev \
     python-pip \
     tzdata \
     unzip \
-    wget
+    wget \
+    zlib1g \
+    zlib1g-dev
 
 ##############
 #HISAT2 2.0.5#
@@ -55,6 +60,24 @@ RUN mkdir /opt/stringtie/ \
     && ln -s /opt/stringtie/stringtie-1.3.3.Linux_x86_64/stringtie /usr/bin/stringtie \
     && cd / \
     && rm stringtie-1.3.3.Linux_x86_64.tar.gz
+
+###############
+#Flexbar 3.0.3#
+###############
+
+RUN mkdir -p /opt/flexbar/tmp \
+    && cd /opt/flexbar/tmp \
+    && wget https://github.com/seqan/flexbar/archive/v3.0.3.tar.gz \
+    && wget https://github.com/seqan/seqan/releases/download/seqan-v2.2.0/seqan-library-2.2.0.tar.xz \
+    && tar xzf v3.0.3.tar.gz \
+    && tar xJf seqan-library-2.2.0.tar.xz \
+    && mv seqan-library-2.2.0/include flexbar-3.0.3 \
+    && cd flexbar-3.0.3 \
+    && cmake . \
+    && make \
+    && cp flexbar /opt/flexbar/ \
+    && cd / \
+    && rm -rf /opt/flexbar/tmp
 
 ######
 #Toil#
