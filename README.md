@@ -1,2 +1,2 @@
 # docker-rnaseq
-A fat docker image for running RNA-Seq
+A fat docker image for running RNASeq
