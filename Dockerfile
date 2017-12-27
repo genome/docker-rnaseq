@@ -217,7 +217,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends locales && \
    ADD rpackages.R /tmp/
    RUN R -f /tmp/rpackages.R
 
-   ## add transcript to gene script
+   ## add transcript to gene scripts
    ADD transcript_to_gene.R /usr/src/
 
    ## Clean up
