@@ -1,2 +1,2 @@
 source("https://bioconductor.org/biocLite.R")
-biocLite("tximport")
+biocLite(c("tximport","rhdf5"))
