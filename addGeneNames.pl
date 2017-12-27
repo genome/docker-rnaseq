@@ -24,6 +24,11 @@ while( my $line = $inFh2->getline )
 {
     chomp($line);
     my @F = split("\t",$line);
+    if($F[0] eq "gene"){ #header
+        print "gene_name" . "\t" . $line . "\n";
+        next;
+    }
+
     if(exists($nameHash{$F[0]})){
         print join("\t",($nameHash{$F[0]},@F)) . "\n";
     } else {
