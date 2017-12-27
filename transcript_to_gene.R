@@ -22,4 +22,4 @@ out = cbind(as.character(gname[row.names(txi$abundance)]), row.names(txi$abundan
 rownames(out)=NULL
 colnames(out)=c("gene_name","gene","abundance","counts","length")
 
-write.table(out,"gene_expression.tsv", sep='\t', quote=FALSE, row.names=F);
+write.table(out,"gene_abundance.tsv", sep='\t', quote=FALSE, row.names=F);
