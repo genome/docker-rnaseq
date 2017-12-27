@@ -10,8 +10,8 @@ kallisto.table = args[2]
 library(tximport);
 
 #read in conversion table
-tx2gene=read.table(conv.table,sep='\t',header=TRUE,quote='',check.names=FALSE);
-txi <- tximport(args[1], type="kallisto", tx2gene=tx2gene,countsFromAbundance="lengthScaledTPM");
+tx2gene=read.table(args[1] ,sep='\t',header=TRUE,quote='',check.names=FALSE);
+txi <- tximport(args[2], type="kallisto", tx2gene=tx2gene,countsFromAbundance="lengthScaledTPM");
 
 #output
 write.table(txi$abundance, file="gene_abundance.txt", sep='\t', quote=FALSE);
