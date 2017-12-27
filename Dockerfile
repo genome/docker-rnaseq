@@ -96,7 +96,7 @@ RUN ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime \
 ##########
 RUN mkdir /opt/kallisto && cd /opt/kallisto && \
     wget https://github.com/pachterlab/kallisto/releases/download/v0.43.1/kallisto_linux-v0.43.1.tar.gz && \
-    tar -xzvf kallisto_linux-v0.43.1.tar.gz
+    tar -xzvf kallisto_linux-v0.43.1.tar.gz && ln -s /opt/kallisto/kallisto_linux-v0.43.1/kallisto /usr/bin/kallisto
 
 
 ############################
