@@ -27,10 +27,10 @@ RUN apt-get update -y && apt-get install -y \
 ##############
 
 RUN mkdir /opt/hisat2/ \
-    && wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.0.5-Linux_x86_64.zip \
-    && unzip -d /opt/hisat2/ hisat2-2.0.5-Linux_x86_64.zip \
-    && ln -s /opt/hisat2/hisat2-2.0.5/hisat2 /usr/bin/hisat2 \
-    && rm hisat2-2.0.5-Linux_x86_64.zip
+    && wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.1.0-Linux_x86_64.zip \
+    && unzip -d /opt/hisat2/ hisat2-2.1.0-Linux_x86_64.zip \
+    && ln -s /opt/hisat2/hisat2-2.1.0/hisat2 /usr/bin/hisat2 \
+    && rm hisat2-2.1.0-Linux_x86_64.zip
 
 #################
 #Sambamba v0.6.4#
