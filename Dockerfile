@@ -221,7 +221,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends locales && \
    ADD transcript_to_gene.R /usr/src/
 
    ## add sambamba wrapper that handles one or multiple bams
-   ADD sambamba_merge.sh /usr/bin/
+   ADD sambamba_merge /usr/bin/
+   RUN chmod +x /usr/bin/sambamba_merge
 
    ## Clean up
    RUN cd / && \
