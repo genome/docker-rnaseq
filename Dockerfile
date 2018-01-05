@@ -220,6 +220,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends locales && \
    ## add transcript to gene scripts
    ADD transcript_to_gene.R /usr/src/
 
+   ## add sambamba wrapper that handles one or multiple bams
+   ADD sambamba_merge.sh /usr/bin/
+
    ## Clean up
    RUN cd / && \
    rm -rf /tmp/* && \
