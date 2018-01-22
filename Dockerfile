@@ -82,9 +82,15 @@ RUN mkdir -p /opt/flexbar/tmp \
 ######
 #Toil#
 ######
-RUN pip install --upgrade pip \
-    && pip install toil[cwl]==3.12.0 \
-    && sed -i 's/select\[type==X86_64 && mem/select[mem/' /usr/local/lib/python2.7/dist-packages/toil/batchSystems/lsf.py
+RUN pip install --upgrade pip && \
+    pip install toil[cwl]==3.12.0 && \
+    #for now, we pull in the patched versions that tmooney created to fix LSF issues. Once it makes it into a versioned release, these lines can be dropped.
+    cd /tmp/ && \
+    wget --no-check-certificate https://raw.githubusercontent.com/tmooney/toil/11d4df08f4f6c299674ca23672ecec546525b0fa/src/toil/batchSystems/lsfHelper.py && \
+    mv -f lsfHelper.py /usr/local/lib/python2.7/dist-packages/toil/batchSystems/ && \
+    wget --no-check-certificate https://raw.githubusercontent.com/tmooney/toil/11d4df08f4f6c299674ca23672ecec546525b0fa/src/toil/batchSystems/lsf.py && \
+    mv -f lsf.py /usr/local/lib/python2.7/dist-packages/toil/batchSystems/ && \
+    sed -i 's/select\[type==X86_64 && mem/select[mem/' /usr/local/lib/python2.7/dist-packages/toil/batchSystems/lsf.py
 
 # Define a timezone so Java works properly
 RUN ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime \
