@@ -11,7 +11,7 @@ if [[ "$#" -lt 3 ]]; then
 fi
 #if there is only one bam, just copy it
 if [[ "$#" -eq 3 ]]; then
-    cp $3 $2
+    cp "$3" "$2"
 else
-    /usr/bin/sambamba merge -t $1 $2 "${@:3}"
+    /usr/bin/sambamba merge -t $1 "$2" "${@:3}"
 fi
