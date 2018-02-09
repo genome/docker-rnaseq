@@ -13,6 +13,7 @@ RUN apt-get update -y && apt-get install -y \
     libnss-sss \
     libtbb2 \
     libtbb-dev \
+    ncurses-dev \
     nodejs \
     python-dev \
     python-pip \
