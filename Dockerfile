@@ -86,11 +86,10 @@ RUN mkdir /opt/picard/ \
 #################
 
 RUN mkdir /opt/stringtie/ \
-    && wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3.Linux_x86_64.tar.gz \
     && cd /opt/stringtie \
-    && tar -xzvf /stringtie-1.3.3.Linux_x86_64.tar.gz \
+    && wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3.Linux_x86_64.tar.gz \
+    && tar -xzvf stringtie-1.3.3.Linux_x86_64.tar.gz \
     && ln -s /opt/stringtie/stringtie-1.3.3.Linux_x86_64/stringtie /usr/bin/stringtie \
-    && cd / \
     && rm stringtie-1.3.3.Linux_x86_64.tar.gz
 
 ###############
