@@ -13,6 +13,7 @@ RUN apt-get update -y && apt-get install -y \
     libnss-sss \
     libtbb2 \
     libtbb-dev \
+    ncurses-dev \
     nodejs \
     python-dev \
     python-pip \
@@ -21,6 +22,37 @@ RUN apt-get update -y && apt-get install -y \
     wget \
     zlib1g \
     zlib1g-dev
+
+##############
+#HTSlib 1.3.2#
+##############
+ENV HTSLIB_INSTALL_DIR=/opt/htslib
+
+WORKDIR /tmp
+RUN wget https://github.com/samtools/htslib/releases/download/1.3.2/htslib-1.3.2.tar.bz2 && \
+    tar --bzip2 -xvf htslib-1.3.2.tar.bz2 && \
+    cd /tmp/htslib-1.3.2 && \
+    ./configure  --enable-plugins --prefix=$HTSLIB_INSTALL_DIR && \
+    make && \
+    make install && \
+    cp $HTSLIB_INSTALL_DIR/lib/libhts.so* /usr/lib/
+    #&& \
+#    ln -s $HTSLIB_INSTALL_DIR/bin/tabix /usr/bin/tabix
+
+################
+#Samtools 1.3.1#
+################
+ENV SAMTOOLS_INSTALL_DIR=/opt/samtools
+
+WORKDIR /tmp
+RUN wget https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 && \
+    tar --bzip2 -xf samtools-1.3.1.tar.bz2 && \
+    cd /tmp/samtools-1.3.1 && \
+    ./configure --with-htslib=$HTSLIB_INSTALL_DIR --prefix=$SAMTOOLS_INSTALL_DIR && \
+    make && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/samtools-1.3.1
 
 ##############
 #HISAT2 2.0.5#
@@ -54,11 +86,10 @@ RUN mkdir /opt/picard/ \
 #################
 
 RUN mkdir /opt/stringtie/ \
-    && wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3.Linux_x86_64.tar.gz \
     && cd /opt/stringtie \
-    && tar -xzvf /stringtie-1.3.3.Linux_x86_64.tar.gz \
+    && wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3.Linux_x86_64.tar.gz \
+    && tar -xzvf stringtie-1.3.3.Linux_x86_64.tar.gz \
     && ln -s /opt/stringtie/stringtie-1.3.3.Linux_x86_64/stringtie /usr/bin/stringtie \
-    && cd / \
     && rm stringtie-1.3.3.Linux_x86_64.tar.gz
 
 ###############
