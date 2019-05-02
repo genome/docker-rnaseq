@@ -64,6 +64,16 @@ RUN mkdir /opt/hisat2/ \
     && ln -s /opt/hisat2/hisat2-2.1.0/hisat2 /usr/bin/hisat2 \
     && rm hisat2-2.1.0-Linux_x86_64.zip
 
+##############
+#STAR VERSION 2.5.3a#
+##############
+# set the environment variables
+ENV star_version 2.6.1d
+WORKDIR /tmp
+ADD https://github.com/alexdobin/STAR/archive/${star_version}.tar.gz /usr/bin/
+RUN tar -xzf /usr/bin/${star_version}.tar.gz -C /usr/bin/
+RUN cp /usr/bin/STAR-${star_version}/bin/Linux_x86_64/* /usr/local/bin
+
 #################
 #Sambamba v0.6.4#
 #################
