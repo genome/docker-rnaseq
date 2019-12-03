@@ -114,7 +114,7 @@ RUN mkdir -p /opt/flexbar/tmp \
 #Toil#
 ######
 #for now, we pull in the patched versions that tmooney created to fix LSF issues. Once it makes it into a versioned release, these wget lines can be dropped.
-RUN pip install --upgrade pip && \
+RUN pip install --upgrade pip==9.0.1 && \
     pip install toil[cwl]==3.12.0 && \
     cd /tmp/ && \
     wget --no-check-certificate https://raw.githubusercontent.com/tmooney/toil/3.12_lsf_fix/src/toil/batchSystems/lsfHelper.py && \
